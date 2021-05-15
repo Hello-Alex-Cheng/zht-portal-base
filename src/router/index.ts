@@ -1,9 +1,14 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+/* eslint-disable */
+import { createRouter, createWebHistory, RouteRecordRaw, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '/home',
     name: 'Home',
     component: Home
   },
@@ -18,7 +23,8 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  // @ts-ignore
+  history: window.__POWERED_BY_QIANKUN__ ? createWebHistory('/vue-base') : createWebHistory(process.env.BASE_URL),
   routes
 })
 

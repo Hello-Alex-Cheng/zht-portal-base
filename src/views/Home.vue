@@ -1,18 +1,34 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <HelloWorld msg="W"/>
+    <p>root: {{root}}</p>
+    <p>doubleCounter: {{1}}</p>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+import { computed, defineComponent } from 'vue'
+import { useStore } from '@/store'
+import { AllMutationTypes } from '@/store/mutation-types'
+
+import HelloWorld from '@/components/HelloWorld.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
     HelloWorld
+  },
+  setup () {
+    const store = useStore()
+
+    console.log(store.getters.getVersion)
+    console.log(store.getters.doubleCounter)
+
+    // store.commit('UPDATAEROOT')
+
+    return {
+      root: '1'
+    }
   }
 })
 </script>
